@@ -10,7 +10,7 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var playerSwitch = 0
+
     private var firstPlayerArray = ArrayList<Int>()
     private var secondPlayerArray = ArrayList<Int>()
 
@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var button8: Button
     private lateinit var button9: Button
     private lateinit var resetButton: Button
+
+    var winnerPlayer = 0
+    private var playerSwitch = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,7 +83,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.btn8 -> buttonNumber = 8
                 R.id.btn9 -> buttonNumber = 9
 
-
             }
 
             if(buttonNumber != 0){
@@ -107,10 +109,50 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         clickedView.isEnabled = false
         checkWinner()
     }
+    private fun clearButtons(){
+
+        button1.text = ""
+        button2.text = ""
+        button3.text = ""
+        button4.text = ""
+        button5.text = ""
+        button6.text = ""
+        button7.text = ""
+        button8.text = ""
+        button9.text = ""
+
+        button1.background = null
+        button2.background = null
+        button3.background = null
+        button4.background = null
+        button5.background = null
+        button6.background = null
+        button7.background = null
+        button8.background = null
+        button9.background = null
+
+    }
+
+    private fun disableButtons(){
+
+        button1.isEnabled = false
+        button2.isEnabled = false
+        button3.isEnabled = false
+        button4.isEnabled = false
+        button5.isEnabled = false
+        button6.isEnabled = false
+        button7.isEnabled = false
+        button8.isEnabled = false
+        button9.isEnabled = false
+
+    }
+
+    private fun playerPoints(){
+
+    }
 
     private fun checkWinner() {
 
-        var winnerPlayer = 0
 
         if (firstPlayerArray.contains(1) && firstPlayerArray.contains(2) && firstPlayerArray.contains(3)){
             winnerPlayer = 1
@@ -168,16 +210,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             winnerPlayer = 2
         }
 
-
         if(winnerPlayer == 1){
             Toast.makeText(this, "winner is first player", Toast.LENGTH_SHORT).show()
+            disableButtons()
         }else if (winnerPlayer == 2){
             Toast.makeText(this, "winer is second player", Toast.LENGTH_SHORT).show()
+            disableButtons()
         }else{
             Toast.makeText(this, "tamashi morcha fred", Toast.LENGTH_SHORT).show()
         }
-
-
 
     }
 
